@@ -4,4 +4,4 @@ J'essaye le three.js
 
 # Installation de Three.js
 
--- npm install --save three
+npm install --save three
