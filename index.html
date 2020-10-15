@@ -10,40 +10,34 @@
     <canvas id="c"></canvas>
 
 </body>
-
+<script src="js/three.js"></script>
 <script type="module">
+    function main() {
+        const canvas = document.querySelector('#c');
+        const renderer = new THREE.WebGLRenderer({canvas});
 
-import * as THREE from '/node_modules/three/build/three.min.js';
+        const fov = 75;
+        const aspect = 2;  // the canvas default
+        const near = 0.1;
+        const far = 5;
+        const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+        camera.position.z = 2;
 
-function main() {
-    const canvas = document.querySelector('#c');
-    const renderer = new THREE.WebGLRenderer({canvas});
+        const scene = new THREE.Scene();
 
-    const fov = 75;
-    const aspect = 2;  // the canvas default
-    const near = 0.1;
-    const far = 5;
-    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.z = 2;
+        const boxWidth = 1;
+        const boxHeight = 1;
+        const boxDepth = 1;
+        const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 
-    const scene = new THREE.Scene();
+        const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // greenish blue
 
-    const boxWidth = 1;
-    const boxHeight = 1;
-    const boxDepth = 1;
-    const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
 
-    const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // greenish blue
-
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
-
-    renderer.render(scene, camera);
-
+        renderer.render(scene, camera);
     }
 
-main();
-
+    main();
 </script>
-
 </html>
